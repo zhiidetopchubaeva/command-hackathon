@@ -9,6 +9,7 @@ class Category(models.Model):
 
 
 class Anime(models.Model):
+    categories = models.ManyToManyField(Category, related_name='anime')
     name = models.CharField(max_length=50)
     opisanie = models.TextField()
     seria = models.IntegerField()
