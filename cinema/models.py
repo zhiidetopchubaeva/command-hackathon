@@ -17,6 +17,12 @@ class Anime(models.Model):
     image = models.ImageField(
         upload_to="media/films")
 
+    @property
+    def average_rating(self):
+        ratings = [rating.value for rating in self.ratings.all()]
+        if ratings:
+            return sum(ratings) / len(ratings)
+        return 0
 
 class Rating(models.Model):
     user = models.ForeignKey(User, related_name='ratings', on_delete=models.CASCADE)
