@@ -7,7 +7,10 @@ router = DefaultRouter()
 router.register('anime', AnimeViewSet)
 router.register('categories', CategoryViewSet)
 
+
 urlpatterns = [
     path('', include(router.urls)),
    
 ]
+
+
