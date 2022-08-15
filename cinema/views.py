@@ -37,7 +37,7 @@ class AnimeViewSet(ModelViewSet):
         name = request.query_params.get('name')
         queryset = self.get_queryset()
         if name:
-            queryset = queryset.filter(title__icontains=name)
+            queryset = queryset.filter(name__icontains=name)
         
         serializer = AnimeSerializer(queryset, many=True, context={'request':request})
         return Response(serializer.data, 200)
@@ -45,13 +45,11 @@ class AnimeViewSet(ModelViewSet):
 
     @action(methods=['GET'], detail=False)
     def order_by_rating(self, request):
-        # rating = request.query_params.get('rating')
-        queryset = self.get_queryset()
-        
+        queryset = self.paginate_queryset()
         queryset = sorted(queryset, key=lambda anime: anime.average_rating, reverse=True)
-        
-        serializer = AnimeSerializer(queryset, many=True, context={'request':request})
+        serializer = AnimeSerializer(queryset, many=True, context={'request': request})
         return Response(serializer.data, 200)
+
 
 
 class CategoryViewSet(mixins.CreateModelMixin, 
@@ -61,3 +59,4 @@ class CategoryViewSet(mixins.CreateModelMixin,
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
+
