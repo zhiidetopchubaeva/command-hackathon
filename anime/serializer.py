@@ -1,14 +1,14 @@
 from itertools import product
 from rest_framework import serializers
 
-from .models import Product, Comment, Like 
+from .models import Anime, Comment, Like 
 
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Product
+        model = Anime
         fields = '__all__'
     
-    def to_representation(self, instance:Product):
+    def to_representation(self, instance:Anime ):
         rep = super().to_representation(instance)
         rep["comments"] = CommentSerializer(instance.comments.all(), many=True).data
         rep["likes"] = instance.likes.all().count()
