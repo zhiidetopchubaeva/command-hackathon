@@ -23,7 +23,7 @@ schema_view = get_schema_view(
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/', include('account.urls')),
-    # path('anime/', include('cinema.urls')),
+    path('anime/', include('cinema.urls')),
     path('docs/', schema_view.with_ui("swagger")),
     path('', include('cinema.urls')),
 

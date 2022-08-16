@@ -5,11 +5,13 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework.generics import get_object_or_404
 
+
 from .serializers import RegisterSerializer
 
 User = get_user_model()
 
 class RegisterAPIView(APIView):
+  
 
     def post(self, request):
         serializer = RegisterSerializer(data=request.data)

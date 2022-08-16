@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 
-from .models import Anime, Category, Comment, Like, Rating
+from .models import Anime, Category, Comment, Like, Rating, Favoritos
 
 class AnimeSerializer(serializers.ModelSerializer):
     class Meta:
@@ -25,10 +25,6 @@ class AnimeSerializer(serializers.ModelSerializer):
 
         return rep
 
-class CommentSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Comment
-        fields = '__all__'
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -36,3 +32,24 @@ class CategorySerializer(serializers.ModelSerializer):
         model = Category
         fields = '__all__'
 
+
+class CommentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = '__all__'
+
+
+    def create(self, validated_data):
+        validated_data['user'] = self.context.get('request').user
+        return super().create(validated_data)
+
+
+    def to_representation(self, instance):
+        rep = super().to_representation(instance)
+        rep['user'] = instance.user.email
+        return rep
+
+class FavoritosSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Favoritos
+        exclude = ['user']
