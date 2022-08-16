@@ -57,12 +57,3 @@ class Like(models.Model):
     def __str__(self):
         return f'LIKE TO ANIME: {self.anime}  FROM USER: {self.user}'
 
-class Otzyv(models.Model):
-    user = models.ForeignKey(User, related_name='otzyv', on_delete=models.CASCADE)
-    anime = models.ForeignKey(Anime, related_name='otzyv', on_delete=models.CASCADE)
-    body = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
-    value = models.IntegerField(choices=[(5,5), (6,6), (7,7), (8,8), (9,9), (10,10)])
-
-    def __str__(self):
-        return f'REVIEW ON ANIME: {self.anime}.  FROM USER: {self.user}. TEXT OOF REVIEW: {self.body}'
