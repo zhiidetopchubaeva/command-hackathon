@@ -1,4 +1,5 @@
-
+from django.shortcuts import render
+from http.client import HTTPResponse
 from django.http import QueryDict
 from django.shortcuts import get_object_or_404
 from rest_framework.viewsets import ModelViewSet, GenericViewSet
@@ -15,6 +16,7 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticate
 from .models import Anime, Category, Comment, Like, Rating, Favoritos
 from .serializers import AnimeSerializer, CategorySerializer, CommentSerializer, FavoritosSerializer
 from .permissions import IsAuthor
+
 
 
 

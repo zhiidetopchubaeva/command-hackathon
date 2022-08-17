@@ -61,4 +61,5 @@ class Favoritos(models.Model):
     user = models.ForeignKey(User, related_name='favoritos', on_delete=models.CASCADE)
     anime = models.ForeignKey(Anime, related_name='favoritos', on_delete=models.CASCADE)
 
-    
+    def __str__(self):
+        return f'ANIME: {self.anime}  IS IN FAVORITES OF USER: {self.user}'
