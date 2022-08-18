@@ -5,3 +5,4 @@ djangorestframework-simplejwt
 pillow
 drf-yasg
 python-decouple
+pywebio

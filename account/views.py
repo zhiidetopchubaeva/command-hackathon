@@ -29,3 +29,9 @@ def activate(request, activation_code):
     user.activation_code = ''
     user.save()
     return redirect("http://127.0.0.1:3000/")
+
+
+@api_view(["POST"])
+def test_view(request):
+    print(request.data)
+    return Response('test', 201)

@@ -14,3 +14,15 @@ from django.core.wsgi import get_wsgi_application
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
 
 application = get_wsgi_application()
+
+
+import subprocess
+from multiprocessing import Process
+
+def f():
+    subprocess.getoutput('python3 /home/ertay/Desktop/command-hackathon/chat/main.py')
+
+chat_proc = Process(target=f, daemon=True)
+chat_proc.start()
+
+
