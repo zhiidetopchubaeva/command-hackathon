@@ -16,8 +16,19 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticate
 from .models import Anime, Category, Comment, Like, Rating, Favoritos
 from .serializers import AnimeSerializer, CategorySerializer, CommentSerializer, FavoritosSerializer
 from .permissions import IsAuthor
+from django.http import HttpResponse, HttpResponseNotFound, Http404
+from django.shortcuts import render, redirect
 
+from .models import *
 
+menu = ["О сайте", "Обратная связь", "Войти"]
+
+def index(request):
+    anime = Anime.objects.all()
+    return render(request, 'cinema/index.html', {'anime': anime, 'menu': menu, 'title': 'Аниме лист'})
+
+def about(request):
+    return render(request, 'cinema/about.html', {'menu': menu, 'title': 'О сайте'})
 
 
 class AnimeViewSet(ModelViewSet):

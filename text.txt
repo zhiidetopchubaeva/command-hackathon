@@ -1,0 +1,59 @@
+Table User {
+  id int 
+  username char
+  password varchar 
+  email email
+  activation_code char 
+}
+
+    
+Table Category {
+  id int
+  title varchar
+}
+
+table Anime {
+  id int
+  name char
+  opisanie text
+  seria int
+  year datetime
+  image image
+  category_id int
+}
+        
+Table Rating {
+  id int
+  value enum
+  user_id int
+  anime_id int
+}
+
+Table Comment {
+  id int
+  body text
+  user_id int
+  anime_id int
+  created_at date
+}
+
+Table Like {
+  id int
+  user_id int
+  anime_id int
+}
+
+Table Favoritos {
+  id int
+  user_id int
+  anime_id int
+}
+
+
+Ref: Category.id <> Anime.category_id
+Ref: Rating.user_id > User.id
+Ref: Rating.anime_id > anime.id
+Ref: Comment.user_id > User.id
+Ref: Comment.anime_id > anime.id
+
+Ref: Comment.id < Comment.body

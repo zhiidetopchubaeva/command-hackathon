@@ -1,0 +1,18 @@
+{% extends 'cinema/base.html' %}
+
+{% block opisanie %}
+<h1>{{name}}</h1>
+
+<ul>
+	{% for a in anime %}
+	<li>
+		<h2>{{a.name}}</h2>
+		<p>{{a.opisanie}}</p>
+		<hr>
+	</li>
+	{% endfor %}
+</ul>
+
+{% endblock %}
+
+	
